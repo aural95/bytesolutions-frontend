@@ -30,7 +30,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/argon-dashboard.css",
+              "src/assets/css/nucleo-svg.css",
+              "src/assets/css/nucleo-icons.css"
             ],
             "scripts": []
           },
