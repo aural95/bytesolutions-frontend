@@ -1,0 +1,66 @@
+<form>
+    <div class="row">
+        <div class="col-sm"><b>Type of user:</b></div>
+        <div class="form-check col-sm">
+            <input class="form-check-input" type="radio" name="role" id="Patient">
+            <label class="custom-control-label" for="Patient">Patient</label>
+        </div>
+        <div class="form-check col-sm">
+            <input class="form-check-input" type="radio" name="role" id="Physician">
+            <label class="custom-control-label" for="Physician">Physician</label>
+        </div>
+        <div class="form-check col-sm">
+            <input class="form-check-input" type="radio" name="role" id="Staff">
+            <label class="custom-control-label" for="Staff">Staff</label>
+          </div>
+    </div>
+    <div class="form-group">
+        <label for="fullname" class="form-control-label">Full Name</label>
+        <input class="form-control" type="text" value="John Snow" id="fullname">
+    </div>
+    <div class="form-group">
+        <label for="email" class="form-control-label">Email</label>
+        <input class="form-control" type="email" value="@example.com" id="email">
+    </div> 
+    <div class="form-group">
+        <label for="password" class="form-control-label">Password</label>
+        <input class="form-control" type="password" value="password" id="password">
+    </div>
+    <div class="form-group">
+        <label for="reenter-password" class="form-control-label">Password</label>
+        <input class="form-control" type="password" value="password" id="reenter-password">
+    </div>
+    <div class="row">
+        <div class="col-sm"><b>Gender</b></div>
+        <div class="form-check col-sm">
+            <input class="form-check-input" type="radio" name="gender" id="Female">
+            <label class="custom-control-label" for="Female">Female</label>
+        </div>
+        <div class="form-check col-sm">
+            <input class="form-check-input" type="radio" name="gender" id="Male">
+            <label class="custom-control-label" for="Male">Male</label>
+        </div>
+        <div class="form-check col-sm">
+            <input class="form-check-input" type="radio" name="gender" id="Other">
+            <label class="custom-control-label" for="Other">Other</label>
+          </div>
+    </div>
+   
+    <div class="form-group">
+        <label for="birthdate" class="form-control-label">Date of Birth</label>
+        <input class="form-control" type="datetime-local" value="2018-11-23T10:30:00" id="birthdate">
+    </div>
+    <div class="form-group">
+        <label for="birthdate" class="form-control-label">Date</label>
+        <input class="form-control" type="date" value="2018-11-23" id="birthdate">
+    </div>
+    <div class="form-group">
+        <label for="healthcard" class="form-control-label">Health card</label>
+        <input class="form-control" type="text" value="" id="healthcard">
+    </div>
+    <button type="button" class="btn bg-gradient-primary">Save</button>
+    <button type="button" class="btn bg-gradient-success">Save and create a new user</button>
+    <button type="button" class="btn bg-gradient-danger">Cancel</button>
+    <button type="button" class="btn bg-gradient-warning">Reset Form</button>
+
+</form>
