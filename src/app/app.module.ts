@@ -15,6 +15,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { PatientRegisterComponent } from './patient-register/patient-register.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     UsersComponent,
     NavbarComponent,
     UserRegistrationComponent,
-    UserFormComponent
+    UserFormComponent,
+    PatientRegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { catchError, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-form',
@@ -46,7 +44,7 @@ export class UserFormComponent {
   getRoleList(){
     let bodyData = {};
     this.http
-      .get('http://localhost:4000/roles')
+      .post('http://localhost:4000/roles',bodyData)
       .subscribe((resultData: any) => {
         if(resultData.status){
           console.log(resultData);

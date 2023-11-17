@@ -6,6 +6,7 @@ import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-ap
 import { LoadAvailabilityComponent } from './load-availability/load-availability.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { PatientRegisterComponent } from './patient-register/patient-register.component';
 
 const routes: Routes = [
   {path: '', component:LoginComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'users/adminregister', component:UserRegistrationComponent },
   {path: 'schedule', component:ScheduleAppointmentComponent },
   {path: 'load', component:LoadAvailabilityComponent },
+  {path: 'patient-register',component:PatientRegisterComponent},
 ];
 
 @NgModule({
