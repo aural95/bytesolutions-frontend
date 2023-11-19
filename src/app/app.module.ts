@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 import { LoadAvailabilityComponent } from './load-availability/load-availability.component';
+
 import { UsersComponent } from './users/users.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
@@ -35,8 +36,7 @@ import { PatientRegisterComponent } from './patient-register/patient-register.co
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
