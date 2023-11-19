@@ -35,7 +35,13 @@
               "src/assets/css/nucleo-svg.css",
               "src/assets/css/nucleo-icons.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/core/popper.min.js",
+              "src/assets/js/core/bootstrap.min.js",
+              "src/assets/js/plugins/perfect-scrollbar.min.js",
+              "src/assets/js/plugins/smooth-scrollbar.min.js",
+              "src/assets/js/plugins/chartjs.min.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -2,7 +2,22 @@
  
  <!-- Use Navbar component -->
 <app-navbar customTitle="View all users"></app-navbar>
-
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-user-form typeOfForm="Edit"></app-user-form>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container-fluid py-4">
     <div class="row">
       <div class="col-12">
@@ -18,56 +33,29 @@
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Role</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Creation Date</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let user of userList" >
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div>
                           <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">John Michael</h6>
-                          <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
+                          <h6 class="mb-0 text-sm">{{user.fullname}}</h6>
+                          <p class="text-xs text-secondary mb-0">{{user.email}}</p>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">Physician</p>
+                      <p class="text-xs font-weight-bold mb-0">{{user.id_role.name}}</p>
                     </td>
                     <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">23/12/23</span>
-                    </td>
-                    <td class="align-middle text-center">
-                      <button type="button" class="btn bg-gradient-primary btn-sm">Edit</button>
+                      <button type="button" class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" (click)="userToBeEdited(user)">Edit</button>
                       <button type="button" class="btn bg-gradient-danger btn-sm">Delete</button>
                     </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div>
-                          <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3" alt="user6">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                          <p class="text-xs text-secondary mb-0">miriam@creative-tim.com</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                        <p class="text-xs font-weight-bold mb-0">Patient</p>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">23/12/23</span>
-                      </td>
-                      <td class="align-middle text-center">
-                          <button type="button" class="btn bg-gradient-primary btn-sm">Edit</button>
-                          <button type="button" class="btn bg-gradient-danger btn-sm">Delete</button>
-                      </td>
                   </tr>
                 </tbody>
               </table>
@@ -77,3 +65,5 @@
       </div>
     </div>
   </div>
+
+  
