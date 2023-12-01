@@ -1,0 +1,32 @@
+<div class="row clearfix">
+    <div class="card chat-app">
+      <div class="chat"> 
+        <!-- Chat Display -->
+        <div class="chat-history">
+          <ul class="m-b-0">
+            <li class="clearfix" *ngFor="let msg of messages">
+              <div class="message-data text-right">
+                <span class="chat-date">{{ msg.createdAt }}</span>
+              </div>
+              <div [ngClass]="{'message other-message float-right': msg.sender === currentUserId, 'message other-message': msg.sender !== currentUserId}">
+                <strong>{{ msg.sender }}</strong>: {{ msg.message }}
+              </div>
+            </li>
+          </ul>
+        </div>
+  
+        <!-- Chat Input -->
+        <div class="chat-message clearfix">
+          <div class="input-group mb-0">
+            <input type="text" [(ngModel)]="message" placeholder="Type your message here" class="form-control" (keyup.enter)="onSendMessage()">
+            <div class="input-group-prepend" (click)="onSendMessage()">
+              <span class="input-group-text"><i class="fa fa-send fa-2x"></i></span>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  
