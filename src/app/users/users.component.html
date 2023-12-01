@@ -54,7 +54,7 @@
                     </td>
                     <td class="align-middle text-center">
                       <button type="button" class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" (click)="userToBeEdited(user)">Edit</button>
-                      <button type="button" class="btn bg-gradient-danger btn-sm">Delete</button>
+                      <button type="button" class="btn bg-gradient-danger btn-sm" (click)="deleteUser(user._id)">Delete</button>
                     </td>
                   </tr>
                 </tbody>
