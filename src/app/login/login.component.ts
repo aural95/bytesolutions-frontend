@@ -19,12 +19,28 @@ export class LoginComponent {
         console.log(response);
         const token = response.data.token;
         const user = response.data.user.fullname; 
-        let role = response.data.user.id_role == "655434872cdb661ebbfc9437" ? "patient" : "Undefined"; 
+        let role = response.data.user.id_role
+        switch (role) {
+          case "655434872cdb661ebbfc9437":
+            role = "patient"
+            break;
+          case "655442cd2e26f0a767177f34":
+            role = "physician"
+            break;
+          case "655442e82e26f0a767177f35":
+            role = "staff"
+            break;
+          case "6567fb82d7a61f4dc8646091":
+            role = "admin"
+            break;
+          default:
+            break;
+        }
         this.setCookie('token', token, 2);
         sessionStorage.setItem("token",token);
         sessionStorage.setItem("role",role);
         sessionStorage.setItem("user",user);
-        this.router.navigate(['/schedule']);
+        this.router.navigate(['/home']);
       },
       (error) => {
         alert(error);
