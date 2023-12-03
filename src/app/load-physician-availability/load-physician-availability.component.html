@@ -33,8 +33,9 @@
 -->
 
 <!-- -->
+<!-- -->
 <app-load-availability></app-load-availability>
-
+<!---->
 
 
 <div class="container text-center">
@@ -43,9 +44,13 @@
       </div>
       <div class="col-md-12 col-lg-7">
         <div class="d-grid gap-2">
-          <button class="btn btn-success mt-3 mb-3">Update Calendar</button>
+          <!---->
+          <button class="btn btn-success mt-3 mb-3" (click)="update()">Update Calendar</button>
+          <!---->
         </div>
         <full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
+        <!--<full-calendar #calendar [options]="calendarOptions"></full-calendar>-->
+
       </div>
     </div>
 </div>

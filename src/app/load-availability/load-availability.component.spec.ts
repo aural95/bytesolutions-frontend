@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LoadAvailabilityComponent } from './load-availability.component';
 
+
 describe('LoadAvailabilityComponent', () => {
   let component: LoadAvailabilityComponent;
   let fixture: ComponentFixture<LoadAvailabilityComponent>;

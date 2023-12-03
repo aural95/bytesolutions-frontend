@@ -13,6 +13,8 @@ import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-ap
 import { LoadAvailabilityComponent } from './load-availability/load-availability.component';
 import { LoadPhysicianAvailabilityComponent } from './load-physician-availability/load-physician-availability.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,7 @@ import { LoadPhysicianAvailabilityComponent } from './load-physician-availabilit
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     FullCalendarModule
   ],
   providers: [],
