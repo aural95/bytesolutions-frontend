@@ -31,6 +31,7 @@ export class UsersComponent {
       .subscribe((resultData: any) => {
         if (resultData.status) {
           this.userList = resultData.message;
+
         } else {
           alert('Error');
         }
@@ -40,6 +41,7 @@ export class UsersComponent {
   userToBeEdited(user:any){
     this.userForm.getUserToEdit(user);
   }
+
   deleteUser(_id:string){
     this.http
     .delete('http://localhost:4000/users/'+_id)
