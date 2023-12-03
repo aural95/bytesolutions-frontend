@@ -13,7 +13,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { HttpClientModule } from '@angular/common/http';
+//import { FormsModule } from '@angular/forms';
 import { PatientRegisterComponent } from './patient-register/patient-register.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { PatientRegisterComponent } from './patient-register/patient-register.co
     NavbarComponent,
     UserRegistrationComponent,
     UserFormComponent,
-    PatientRegisterComponent
+    PatientRegisterComponent,
+    ChatRoomComponent
   ],
   imports: [
     BrowserModule,

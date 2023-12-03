@@ -19,6 +19,7 @@ export class LoginComponent {
         console.log(response);
         const token = response.data.token;
         const user = response.data.user.fullname; 
+        const idUser = response.data.user._id;
         let role = response.data.user.id_role
         switch (role) {
           case "655434872cdb661ebbfc9437":
@@ -40,6 +41,7 @@ export class LoginComponent {
         sessionStorage.setItem("token",token);
         sessionStorage.setItem("role",role);
         sessionStorage.setItem("user",user);
+        sessionStorage.setItem("idUser",idUser);
         this.router.navigate(['/home']);
       },
       (error) => {
