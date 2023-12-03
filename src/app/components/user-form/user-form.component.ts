@@ -44,6 +44,7 @@ export class UserFormComponent {
     this.getRoleList();
 
     if (this.typeOfForm === 'Patient') {
+      this.userToSave.role="Patient";
       this.path = '/signup';
     } else {
       this.path = '/users';
@@ -57,7 +58,17 @@ export class UserFormComponent {
 
   //Function to send to the specific path after finishing
   returnToPreviousRoute(): void {
-    this.router.navigate([this.path]);
+    
+    let currentUrl = this.router.url; // Get the current route URL
+    
+    if(this.typeOfForm==="Patient"){
+      currentUrl = "/";
+    }
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      // Navigate back to the current route
+      this.router.navigate([currentUrl]);
+    });
   }
 
   getUserToEdit(user: any): void {
@@ -84,32 +95,56 @@ export class UserFormComponent {
   onSubmit():void{
     this.userToSave.birthdate=new Date(this.userToSave.birthdateString); 
     console.log(this.userToSave);
-    if(this.userToSave.password!=this.userToSave.confirmPassword || (this.userToSave.confirmPassword=="" && this.userToSave.password=="")){
-      window.alert("Please verify password and confirm password");
-      return;
-    }
-    if(this.userToSave.gender==""){
-      window.alert("Please select the gender of the user");
-      return;
-    }
-    if(this.userToSave.role===''){
-      window.alert("Please select the role of the user");
-      return;
-    }
-    if(this.userToSave.fullname===''){
-      window.alert("Please type the name of the user");
-      return;
-    }
-    if(!this.isDateModified){
-      window.alert("Please select the DOB of the user");
-      return;
-    }
-    if(this.userToSave.healthcard===''){
-      window.alert("Please type the Health Card Number of the user");
-      return;
+    
+
+    if(this.typeOfForm==="Edit"){
+      
+      this.userToSave.id_role=this.roles.find(role=>role.name===this.userToSave.role);
+      let userToEdit = {
+        fullname: this.userToSave.fullname,
+        healthcard: this.userToSave.healthcard
+      };
+      this.http
+        .put('http://localhost:4000/users/'+this.userToSave._id,userToEdit)
+        .subscribe((resultData: any) => {
+          console.log(resultData);
+          if (resultData) {
+            window.alert("User edited");
+            this.returnToPreviousRoute();
+          } else {
+            console.log('Error editing user');
+          }
+        });
     }
 
+
     if(this.typeOfForm==="Patient" || this.typeOfForm==="Admin"){
+
+      if(this.userToSave.password!=this.userToSave.confirmPassword || (this.userToSave.confirmPassword=="" && this.userToSave.password=="")){
+        window.alert("Please verify password and confirm password");
+        return;
+      }
+      if(this.userToSave.gender==""){
+        window.alert("Please select the gender of the user");
+        return;
+      }
+      if(this.userToSave.role===''){
+        window.alert("Please select the role of the user");
+        return;
+      }
+      if(this.userToSave.fullname===''){
+        window.alert("Please type the name of the user");
+        return;
+      }
+      if(!this.isDateModified){
+        window.alert("Please select the DOB of the user");
+        return;
+      }
+      if(this.userToSave.healthcard===''){
+        window.alert("Please type the Health Card Number of the user");
+        return;
+      }
+
       //register as patient, anyone can register aas patient
       this.userToSave.id_role=this.roles.find(role=>role.name===this.userToSave.role);
       let userToSend = {

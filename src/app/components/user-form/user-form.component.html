@@ -24,11 +24,11 @@
     </div> 
     <div class="form-group">
         <label for="password" class="form-control-label">Password</label>
-        <input class="form-control" type="password" [(ngModel)]="userToSave.password" [ngModelOptions]="{standalone: true}" id="password">
+        <input class="form-control" type="password" [hidden]="typeOfForm=='Edit'" [(ngModel)]="userToSave.password" [ngModelOptions]="{standalone: true}" id="password">
     </div>
     <div class="form-group">
         <label for="reenter-password" class="form-control-label">Confirm Password</label>
-        <input class="form-control" type="password" [(ngModel)]="userToSave.confirmPassword" [ngModelOptions]="{standalone: true}" id="reenter-password">
+        <input class="form-control" type="password" [hidden]="typeOfForm=='Edit'" [(ngModel)]="userToSave.confirmPassword" [ngModelOptions]="{standalone: true}" id="reenter-password">
     </div>
     <div class="row">
         <div class="col-sm"><b>Gender</b></div>
@@ -55,7 +55,6 @@
         <input class="form-control" type="text" [(ngModel)]="userToSave.healthcard" [ngModelOptions]="{standalone: true}" id="healthcard">
     </div>
     <button type="submit" class="btn bg-gradient-primary" >Save</button>
-    <button type="button" class="btn bg-gradient-success" [hidden]="typeOfForm=='Patient' || typeOfForm=='Edit'">Save and create a new user</button>
     <button type="button" class="btn bg-gradient-danger" (click)="returnToPreviousRoute()" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
     <button type="reset" class="btn bg-gradient-warning" [hidden]="typeOfForm=='Patient' || typeOfForm=='Edit'">Reset Form</button>
 
