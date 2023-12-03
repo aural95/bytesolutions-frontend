@@ -7,6 +7,7 @@ import { LoadAvailabilityComponent } from './load-availability/load-availability
 import { RouterModule, Routes } from '@angular/router';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { PatientRegisterComponent } from './patient-register/patient-register.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 const routes: Routes = [
   {path: '', component:LoginComponent },
@@ -17,6 +18,8 @@ const routes: Routes = [
   {path: 'schedule', component:ScheduleAppointmentComponent },
   {path: 'load', component:LoadAvailabilityComponent },
   {path: 'patient-register',component:PatientRegisterComponent},
+  {path: 'chat-room',component:ChatRoomComponent},
+  {path: 'chat-room/:id',component:ChatRoomComponent},
 ];
 
 @NgModule({
