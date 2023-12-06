@@ -111,7 +111,7 @@ export class ChatRoomComponent implements OnInit {
         (resultData: any) => {
           if (resultData.success) {
             this.appointment = resultData.data[0];
-            if (!this.isToday(this.appointment.date)) {
+            if (!this.isToday(this.appointment.date) && this.role == "patient") {
               this.isEnabled = false;
             }
 
