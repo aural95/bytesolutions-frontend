@@ -22,7 +22,7 @@
      </div>
      <ul class="navbar-nav  justify-content-end">
        <li class="nav-item d-flex align-items-center">
-        <span class="d-sm-inline d-none text-white">Welcome, admin!</span>
+        <span class="d-sm-inline d-none text-white">Welcome!</span>
 
        </li>
      </ul>
@@ -44,8 +44,8 @@
           
 
             <p class="mb-0">Physician Email</p> &nbsp;&nbsp;
-            <input type="email" class="form-control"  disabled id="email"  [(ngModel)]="email" value="fghjkl@email" name="email">
-            <!-- <input type="email" class="form-control" disabled id="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" name="email"> -->
+            <input type="email" class="form-control"  disabled id="email"  [(ngModel)]="email" [ngModelOptions]="{standalone: true}"  name="email"> 
+            
             <label for="email"></label>
 
           </div>
@@ -60,7 +60,7 @@
             <input type="date" class="form-control" id="date" [(ngModel)]="date" [ngModelOptions]="{standalone: true}" required>
             
             &nbsp;&nbsp;
-            <!--<button class="btn btn-primary btn-sm ms-auto">Select</button>-->
+            
           </div>
 
           <div style="margin-bottom: 20px;">
