@@ -1,30 +1,31 @@
- <!-- Sidebar-->
- <app-sidebar></app-sidebar> 
- 
- 
+<!-- Sidebar-->
+<app-sidebar></app-sidebar>
 
- 
+
+
+
 
 
 <app-load-availability></app-load-availability>
 
 
-
-<div class="container text-center">
-    <div class="row">
-      <div class="col-md-12 col-lg-4">
-      </div>
-      <div class="col-md-12 col-lg-7">
-        <div class="d-grid gap-2">
-          
-          <button class="btn btn-success mt-3 mb-3" (click)="update()">Update Calendar</button>
-          
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12 col-lg-3">
         </div>
-        <full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
-     
+        <div class="col-md-12 col-lg-9">
+          <div class="d-grid gap-2">
 
+            <button class="btn btn-success mt-3 mb-3" (click)="update()">Update Calendar</button>
+
+          </div>
+          <full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
+
+
+        </div>
       </div>
     </div>
+  </div>
 </div>
-
-

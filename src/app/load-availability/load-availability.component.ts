@@ -34,7 +34,7 @@ register_availability() {
   var dateReq = this.date;
   const bodyData = {
     date: dateReq,
-    physician_email: "656bc353d75738e4b27da1c6",//this.email,
+    physician_email: this.email,
   
   };
   console.log(this.email);
