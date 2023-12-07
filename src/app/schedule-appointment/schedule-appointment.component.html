@@ -43,13 +43,13 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Name</label>
+                      <label for="example-text-input" class="form-control-label" >Name</label>
                       <input class="form-control" type="text" value="Laura Lizarazo">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Email address</label>
+                      <label for="example-text-input" class="form-control-label" [(ngModel)]="patientEmail">Email address</label>
                       <input class="form-control" type="email" value="llizarazo1@my.centennialcollege.ca">
                     </div>
     
@@ -58,7 +58,7 @@
               </div>
 
               <p class="mb-0">Specialty</p> &nbsp;&nbsp;
-              <select id="specialty" class="form-control"> [(ngModel)]="selectedSpecialty" (change)="onSpecialtyChange($event.target?.value)"
+              <select id="specialty" class="form-control" [(ngModel)]="selectedSpecialty" (ngModelChange)="onSpecialtyChange($event)">
                 <option>All Specialties</option>
                 <option>Anesthesiology</option>
                 <option>Cardiology</option>
@@ -75,15 +75,34 @@
                 <option>Urology</option>
               </select>
               &nbsp;&nbsp;
-              <p class="mb-0">Physician</p> &nbsp;&nbsp;
-              <select name="" id="" class="form-control">
+              <select name="" id="" class="form-control" [(ngModel)]="physicianSelected">
                 <option *ngIf="!physicians || physicians.length === 0" disabled selected>No Doctors Available</option>
-                <option *ngFor="let physician of physicians" [value]="physician.id">
+                <option *ngFor="let physician of physicians" [value]="physician._id">
                   {{ physician.fullname }}
                 </option>
               </select>
+
               &nbsp;&nbsp;
-              <button class="btn btn-primary mt-4 btn-sm ms-auto">Select</button>
+
+            <p class="mb-0" >Appointment Date:</p> &nbsp;&nbsp;
+            <div class="form-group">
+            </div>
+
+            <p class="mb-0">Appointment Time:</p> &nbsp;&nbsp;
+            <div class="form-group">
+              <select name="" id="" class="form-control" [(ngModel)]="appointmentSelected">
+                <option *ngIf="!appointments || appointments.length === 0" disabled selected>No Appointments Available</option>
+                <option *ngFor="let appointment of appointments" [value]="appointment._id">
+                  {{ appointment.start_time}}
+                </option>
+              </select>
+
+              <!-- <input type="time" id="appointmentTime" name="appointmentTime" required [(ngModel)]="startTimeSelected"> -->
+            </div>
+            &nbsp;&nbsp;
+
+            <button class="btn btn-primary mt-4 btn-sm ms-auto" (click)="scheduleAppointment()">Schedule appointment</button>
+
             </div>
           </div>
         </div>
