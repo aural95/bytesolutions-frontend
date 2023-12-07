@@ -10,7 +10,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 import { LoadAvailabilityComponent } from './load-availability/load-availability.component';
 import { LoadPhysicianAvailabilityComponent } from './load-physician-availability/load-physician-availability.component';
-import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users/users.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
