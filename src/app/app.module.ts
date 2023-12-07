@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PatientRegisterComponent } from './patient-register/patient-register.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
