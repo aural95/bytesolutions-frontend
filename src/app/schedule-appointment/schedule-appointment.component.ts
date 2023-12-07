@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-schedule-appointment',
   templateUrl: './schedule-appointment.component.html',
   styleUrls: ['./schedule-appointment.component.scss']
 })
+
 export class ScheduleAppointmentComponent implements OnInit {
   selectedSpecialty: string = 'All Specialties';
   physicians: any[] = [];
@@ -19,12 +21,14 @@ export class ScheduleAppointmentComponent implements OnInit {
   submitButtonEnabled: boolean = true;
   patientEmail: string = ' ';
   appointmentSelected: string = ' ';
-
+  role: string | null = null;
+  
   constructor(private httpClient: HttpClient) {
     this.physicians = [];
   }
 
   ngOnInit() {
+    this.role = sessionStorage.getItem("role");    
     this.selectedSpecialty = 'All Specialties';
     this.fetchPhysiciansBySpecialty();
     this.startTimeSelected = ' ';
