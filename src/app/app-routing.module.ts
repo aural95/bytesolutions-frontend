@@ -9,6 +9,8 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { PatientRegisterComponent } from './patient-register/patient-register.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 
+import { LoadPhysicianAvailabilityComponent } from './load-physician-availability/load-physician-availability.component';
+
 const routes: Routes = [
   {path: '', component:LoginComponent },
   {path: 'home', component:HomeComponent },
