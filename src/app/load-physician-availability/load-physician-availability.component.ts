@@ -66,20 +66,20 @@ export class LoadPhysicianAvailabilityComponent {
     
     let physicianData = {
       "type":1,
-        "physicianEmail": "", //sessionStorage.getItem("email"),
+        "physicianEmail": sessionStorage.getItem("email"),
         "isBooked":false
     };
-    console.log("PAPA");
-    console.log(sessionStorage.getItem("email"));
+    console.log("REVISAR");
+    console.log(sessionStorage.getItem("idUser"));
+
+    let doctorId = sessionStorage.getItem("idUser"); // Reemplaza con el ID real del médico
     let schedulesToShow: { title: string, start: string, end: string, constraint: string }[] = []; // elimine el date: string
       try {
-        this.http.get("http://localhost:4000/appointments").subscribe((resultData:any)=>{
+        this.http.get(`http://localhost:4000/appointments/getAppointmentsByDoctor/${doctorId}`).subscribe((resultData:any)=>{
+          //http://localhost:4000/appointments
           
-          console.log("ESTO ES RESULDATA:");
-          console.log(resultData);
-          let schedules=resultData; 
-          console.log("Accediendo a is_booked");
-          console.log(schedules.is_booked);
+          let schedules=resultData.data; 
+          
           
           for(let i=0; i < schedules.length; i++){
            

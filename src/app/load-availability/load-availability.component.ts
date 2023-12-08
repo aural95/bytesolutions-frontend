@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 export class LoadAvailabilityComponent {
 
   email: string | null = null;
+  idUser: string | null = null;
   date: Date = new Date();
   role: string | null = null;
   backendData: any; // Variable para almacenar los datos del backend
@@ -21,7 +22,7 @@ export class LoadAvailabilityComponent {
   ngOnInit(): void {
     console.log("entrando al OnInit")
     this.role = sessionStorage.getItem("role");   
-    this.email = sessionStorage.getItem("email");
+    this.idUser = sessionStorage.getItem("idUser");
 
   
   }
@@ -34,11 +35,12 @@ register_availability() {
   var dateReq = this.date;
   const bodyData = {
     date: dateReq,
-    physician_email: this.email,
+    physician_email: this.idUser,
   
   };
-  console.log(this.email);
-  console.log(this.date);
+  console.log("this.idUser");
+  console.log(this.idUser);
+  
   alert("Your availability has been succesfully registered for the date: "+this.date);
 
 
