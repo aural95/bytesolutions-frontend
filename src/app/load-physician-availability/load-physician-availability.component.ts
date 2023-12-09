@@ -19,13 +19,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoadPhysicianAvailabilityComponent {
 
-  //
   @ViewChild('calendar') calendarComponent: any;
   
   ngOnInit(): void{ 
-    
     this.update();
-    
    }
 
    constructor(private http: HttpClient){}
@@ -64,22 +61,13 @@ export class LoadPhysicianAvailabilityComponent {
     console.log("entrando a update");
     console.log(this.calendarOptions.events);
     
-    let physicianData = {
-      "type":1,
-        "physicianEmail": sessionStorage.getItem("email"),
-        "isBooked":false
-    };
-    console.log("REVISAR");
-    console.log(sessionStorage.getItem("idUser"));
-
-    let doctorId = sessionStorage.getItem("idUser"); // Reemplaza con el ID real del médico
     let schedulesToShow: { title: string, start: string, end: string, constraint: string }[] = []; // elimine el date: string
       try {
-        this.http.get(`http://localhost:4000/appointments/getAppointmentsByDoctor/${doctorId}`).subscribe((resultData:any)=>{
-          //http://localhost:4000/appointments
+        this.http.get("http://localhost:4000/appointments").subscribe((resultData:any)=>{
           
-          let schedules=resultData.data; 
-          
+          console.log("ESTO ES RESULDATA:");
+          console.log(resultData);
+          let schedules=resultData; 
           
           for(let i=0; i < schedules.length; i++){
            
@@ -95,15 +83,15 @@ export class LoadPhysicianAvailabilityComponent {
               constraint: 'businessHours' 
             };
   
-            console.log("---------");
-            console.log(showAppointments);
+            // console.log("---------");
+            // console.log(showAppointments);
             schedulesToShow.push(showAppointments);
           }
-          console.log("Data transformed:");
-          console.log(schedulesToShow);
+          // console.log("Data transformed:");
+          // console.log(schedulesToShow);
           this.calendarOptions.events=schedulesToShow;
-          console.log("ESTO ME DARA EL RESULTADO: ");
-          console.log(this.calendarOptions.events);
+          // console.log("ESTO ME DARA EL RESULTADO: ");
+          // console.log(this.calendarOptions.events);
 
           
           

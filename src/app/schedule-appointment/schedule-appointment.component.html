@@ -40,19 +40,11 @@
               <div class="card-body">
                 <p class="text-uppercase text-sm">Patient Information</p>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label" >Name</label>
-                      <input class="form-control" type="text" value="Laura Lizarazo">
+                      <input class="form-control" type="text" [value]="patientName" disabled>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label" [(ngModel)]="patientEmail">Email address</label>
-                      <input class="form-control" type="email" value="llizarazo1@my.centennialcollege.ca">
-                    </div>
-    
-                    
                   </div>
               </div>
 
@@ -85,6 +77,7 @@
 
             <p class="mb-0" >Appointment Date:</p> &nbsp;&nbsp;
             <div class="form-group">
+              <input class="form-control" type="date" (change)="onDateChange($event)">
             </div>
 
             <p class="mb-0">Appointment Time:</p> &nbsp;&nbsp;

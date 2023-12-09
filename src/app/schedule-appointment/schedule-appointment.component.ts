@@ -16,10 +16,10 @@ export class ScheduleAppointmentComponent implements OnInit {
   dateSelected: string = ' ';
   startTimeSelected: string = ' ';
   physicianSelected: string = ' ';
-  physicianEmail: string = '';
+  physicianEmail: string | null = null;;
   physicianList: string[] = [];
   submitButtonEnabled: boolean = true;
-  patientEmail: string = ' ';
+  patientName: string  | null = null;
   appointmentSelected: string = ' ';
   role: string | null = null;
   
@@ -28,7 +28,8 @@ export class ScheduleAppointmentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.role = sessionStorage.getItem("role");    
+    this.role = sessionStorage.getItem("role");   
+    this.patientName = sessionStorage.getItem("user");   
     this.selectedSpecialty = 'All Specialties';
     this.fetchPhysiciansBySpecialty();
     this.startTimeSelected = ' ';
@@ -63,22 +64,21 @@ export class ScheduleAppointmentComponent implements OnInit {
   }
 
 // Fetching appointments by date:
-  onDateChange(date: string){
-    this.dateSelected = date;
+  onDateChange(event: any){
+    const selectedDate = (event.target as HTMLInputElement).value;
+    this.dateSelected = selectedDate;
     try {
       this.fetchAppointmentsByDate();      
     } catch (error) {
       console.error(error);
     }
   }
+
   async fetchAppointmentsByDate() {
-    console.log('Fetching available appointments by date:', this.dateSelected);
-    console.log(this.dateSelected);
-    console.log(this.physicianSelected)
     try {
       const response = await this.httpClient.get<any[]>(`http://localhost:4000/appointments/getAllAvailabilityByDoctor/${this.physicianSelected}/${this.dateSelected}`).toPromise();
+      //console.log(response?.data);
       this.appointments = response || [];
-      console.log(this.appointments);
     } catch (error) {
       console.error('Error fetching appointments:', error);
     }
@@ -118,19 +118,4 @@ export class ScheduleAppointmentComponent implements OnInit {
       console.error('Error fetching appointments:', error);
     }
   }
-
-   cancelAppointment(): void {
-    const appointmentData = {
-      patient_email: "", // Valor del id del paciente logueado 
-    };
-    this.httpClient.put<any>(`/appointments/cancel/${this.appointmentSelected}`, appointmentData)
-      .subscribe(
-        response => {
-          console.log('Appointment scheduled successfully:', response);
-        },
-        error => {
-          console.error('Error scheduling appointment:', error);
-        }
-      );
-  } 
 }
