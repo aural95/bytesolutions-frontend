@@ -29,6 +29,8 @@ export class AppointmentService {
   postMessage(message: any): Observable<any> {
     return this.http.post(`${this.server}/saveMessage`, message);
   }
-
+  cancelAppointment(appointmentId: string): Observable<any> {
+    return this.http.put(`${this.server}/cancel/${appointmentId}`, {});
+  }
 
 }

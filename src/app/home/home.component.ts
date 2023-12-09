@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 // import { AuthService } from '../auth.service';
-// import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { AppointmentService } from 'src/app/services/appointment.service'
 
 @Component({
@@ -12,7 +12,7 @@ import { AppointmentService } from 'src/app/services/appointment.service'
 
 
 export class HomeComponent {
-  constructor(private appointmentService: AppointmentService) { }
+  constructor(private appointmentService: AppointmentService, private http: HttpClient) { }
   appointments: any;
   role: string | null = null;
   user: string | null = null;
@@ -20,7 +20,10 @@ export class HomeComponent {
   ngOnInit(): void {
     this.role = sessionStorage.getItem("role");
     this.user = sessionStorage.getItem("idUser");
+    this.loadAppointments();
+  }
 
+  loadAppointments(): void {
     switch (this.role?.toLowerCase()) {
       case "patient":
         this.getAppointmentsByPatient(this.user == null ? '' : this.user);
@@ -33,7 +36,6 @@ export class HomeComponent {
         break;
     }
   }
-
 
   getAppointments(): void {
     this.appointmentService
@@ -88,7 +90,7 @@ export class HomeComponent {
 
   isToday(date: string): boolean {
     const today = new Date();
-    const itemDate = new Date(date);   
+    const itemDate = new Date(date);
     const hoursToAdd = 5; // add five hs of server difference
     itemDate.setHours(itemDate.getHours() + hoursToAdd);
     return (
@@ -97,4 +99,26 @@ export class HomeComponent {
       today.getDate() === itemDate.getDate()
     );
   }
+
+
+  cancelAppointment(id: string): void {
+//656a4745050daa1060163179
+    this.appointmentService
+      .cancelAppointment(id).subscribe(
+        (resultData: any) => {
+          
+          if (resultData.success) {
+            this.loadAppointments();
+            console.log('Appointment scheduled successfully:', resultData.data);
+          } else {
+            console.error('Error: ' + resultData);
+          }
+        },
+        (error) => {
+          console.error('Error scheduling appointment:', error);
+        }
+      );
+  }
+
+
 }
