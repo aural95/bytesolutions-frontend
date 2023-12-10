@@ -59,11 +59,9 @@
                     </td> -->
 
                   <td class="align-middle text-center text-sm">
-                    <span *ngIf="isToday(item.date); else closedStatus"
-                      class="badge badge-sm bg-gradient-warning">Pending</span>
-                    <ng-template #closedStatus>
-                      <span class="badge badge-sm bg-gradient-secondary">Attended</span>
-                    </ng-template>
+                    <span *ngIf="isToday(item.date)" class="badge badge-sm bg-gradient-primary">Active</span>
+                    <span *ngIf="isPastDate(item.date)" class="badge badge-sm bg-gradient-secondary">Attended</span>
+                    <span *ngIf="isFutureDate(item.date)" class="badge badge-sm bg-gradient-warning">Pending</span>
                   </td>
 
 

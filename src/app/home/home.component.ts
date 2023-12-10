@@ -88,6 +88,23 @@ export class HomeComponent {
       );
   }
 
+
+  isPastDate(date: string): boolean {
+    const today = new Date();
+    const itemDate = new Date(date);
+    const hoursToAdd = 5; // add five hours of server difference
+    itemDate.setHours(itemDate.getHours() + hoursToAdd);
+    return itemDate < today;
+  }
+  
+  isFutureDate(date: string): boolean {
+    const today = new Date();
+    const itemDate = new Date(date);
+    const hoursToAdd = 5; // add five hours of server difference
+    itemDate.setHours(itemDate.getHours() + hoursToAdd);
+    return itemDate > today;
+  }
+
   isToday(date: string): boolean {
     const today = new Date();
     const itemDate = new Date(date);

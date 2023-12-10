@@ -1,7 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AppointmentService } from 'src/app/services/appointment.service'
 
 @Component({
   selector: 'app-schedule-appointment',
@@ -20,16 +21,18 @@ export class ScheduleAppointmentComponent implements OnInit {
   physicianList: string[] = [];
   submitButtonEnabled: boolean = true;
   patientName: string  | null = null;
+  idUser: string  | null = null;
   appointmentSelected: string = ' ';
   role: string | null = null;
   
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private appointmentService: AppointmentService, private router: Router) {
     this.physicians = [];
   }
 
   ngOnInit() {
     this.role = sessionStorage.getItem("role");   
     this.patientName = sessionStorage.getItem("user");   
+    this.idUser = sessionStorage.getItem("idUser");  
     this.selectedSpecialty = 'All Specialties';
     this.fetchPhysiciansBySpecialty();
     this.startTimeSelected = ' ';
@@ -74,18 +77,27 @@ export class ScheduleAppointmentComponent implements OnInit {
     }
   }
 
-  async fetchAppointmentsByDate() {
-    try {
-      const response = await this.httpClient.get<any[]>(`http://localhost:4000/appointments/getAllAvailabilityByDoctor/${this.physicianSelected}/${this.dateSelected}`).toPromise();
-      //console.log(response?.data);
-      this.appointments = response || [];
-    } catch (error) {
-      console.error('Error fetching appointments:', error);
-    }
-  }
 
-  //Schedule appointment section: 
+  fetchAppointmentsByDate(): void {
+        this.appointmentService
+          .fetchAppointmentsByDate(this.physicianSelected, this.dateSelected).subscribe(
+            (resultData: any) => {
+              
+              if (resultData.success) {
+                this.appointments = resultData.data;
+                console.log('Appointments retrieved', resultData.data);
+              } else {
+                console.error('Error: ' + resultData);
+              }
+            },
+            (error) => {
+              console.error('Error:', error);
+            }
+          );
+      }
 
+
+ //Schedule appointment section: 
  scheduleAppointment(): void {
     if (!this.dateSelected || !this.startTimeSelected || !this.physicianSelected) {
       console.error('Please fill out all the fields!');
@@ -93,12 +105,14 @@ export class ScheduleAppointmentComponent implements OnInit {
     }
     const appointmentData = {
       is_booked: true,
-      patient_email: "", // Valor del id del paciente logueado 
+      patient_email: this.idUser, 
     };
+    
     this.httpClient.put<any>(`http://localhost:4000/appointments/schedule/${this.appointmentSelected}`, appointmentData)
       .subscribe(
         response => {
           console.log('Appointment scheduled successfully:', response);
+          this.router.navigate(['/home']);
         },
         error => {
           console.error('Error scheduling appointment:', error);
@@ -107,7 +121,6 @@ export class ScheduleAppointmentComponent implements OnInit {
    }
 
    // Cancel appointments 
-
    async fetchAllPatientAppointments() {
     console.log('Fetching all appointments for this patient', this.appointmentSelected);
     try {

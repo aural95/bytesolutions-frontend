@@ -32,5 +32,8 @@ export class AppointmentService {
   cancelAppointment(appointmentId: string): Observable<any> {
     return this.http.put(`${this.server}/cancel/${appointmentId}`, {});
   }
+  fetchAppointmentsByDate(physicianSelected: string, dateSelected: string): Observable<any> {
+    return this.http.get(`${this.server}/getAllAvailabilityByDoctor/${physicianSelected}/${dateSelected}`, {});
+  }
 
 }
