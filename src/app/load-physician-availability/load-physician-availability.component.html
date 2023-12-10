@@ -1,29 +1,40 @@
 <!-- Sidebar-->
 <app-sidebar></app-sidebar>
 
+<!-- Navbar -->
+<app-navbar customTitle="Physician Calendar"></app-navbar>
 
-
-
-
-
-<app-load-availability></app-load-availability>
-
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Load your availability</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-load-availability></app-load-availability>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container-fluid py-4">
   <div class="row">
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-md-12 col-lg-3">
-        </div>
-        <div class="col-md-12 col-lg-9">
-          <div class="d-grid gap-2">
-
-            <button class="btn btn-success mt-3 mb-3" (click)="update()">Update Calendar</button>
-
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header pb-0">
+          <div class="d-flex align-items-center">
+            <h2 class="mb-0">Physician Calendar</h2> &nbsp;&nbsp;
+            
           </div>
+        </div>
+        <div class="card-body">
+          <button class="btn btn-success mt-3 mb-3" (click)="update()">Update Calendar</button>
+          <button class="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#editModal">Load availability</button>
           <full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
-
-
         </div>
       </div>
     </div>

@@ -13,7 +13,6 @@ export class SidebarComponent {
   ngOnInit(): void {
     
     this.userRole = sessionStorage.getItem("role"); 
-    console.log(this.userRole);
   }
 
   constructor(private authService: AuthService, private router: Router) {}

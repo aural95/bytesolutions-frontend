@@ -14,6 +14,10 @@
             <label class="custom-control-label" for="Staff">Staff</label>
           </div>
     </div>
+    <div class="form-group" [hidden]="userToSave.role!='Physician'">
+        <label for="specialty" class="form-control-label">Specialty</label>
+        <input class="form-control" type="text" required [(ngModel)]="userToSave.specialty" [ngModelOptions]="{standalone: true}" [disabled]="typeOfForm=='Edit'"  id="specialty">
+    </div>
     <div class="form-group">
         <label for="fullname" class="form-control-label">Full Name</label>
         <input class="form-control" type="text" required [(ngModel)]="userToSave.fullname" [ngModelOptions]="{standalone: true}" id="fullname">

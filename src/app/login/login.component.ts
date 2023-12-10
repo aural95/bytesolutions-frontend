@@ -45,8 +45,8 @@ export class LoginComponent {
         this.router.navigate(['/home']);
       },
       (error) => {
-        alert(error);
-        console.error('Session Error:', error);
+        //Get the error message from the backend and show it to the user
+        alert(error.error.error);
       }
     );
   }

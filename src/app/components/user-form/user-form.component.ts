@@ -16,6 +16,7 @@ export class UserFormComponent {
   userToSave = {
     _id:'',
     fullname: '',
+    specialty:'',
     email: '',
     id_role: {
       _id:'',
@@ -76,6 +77,7 @@ export class UserFormComponent {
     this.userToSave = {
       _id:user._id,
       fullname: user.fullname,
+      specialty:user.specialty,
       email: user.email,
       id_role: {
         _id: user.id_role._id,
@@ -115,42 +117,45 @@ export class UserFormComponent {
             console.log('Error editing user');
           }
         });
-    }
-
-
-    if(this.typeOfForm==="Patient" || this.typeOfForm==="Admin"){
-
+    }else{
+      //verify password and retype password match
       if(this.userToSave.password!=this.userToSave.confirmPassword || (this.userToSave.confirmPassword=="" && this.userToSave.password=="")){
         window.alert("Please verify password and confirm password");
         return;
       }
+      //verify gender was selected
       if(this.userToSave.gender==""){
         window.alert("Please select the gender of the user");
         return;
       }
+      //verify role was selected
       if(this.userToSave.role===''){
         window.alert("Please select the role of the user");
         return;
       }
+      //verify user full name was selected
       if(this.userToSave.fullname===''){
         window.alert("Please type the name of the user");
         return;
       }
+      //verify the date was entered
       if(!this.isDateModified){
         window.alert("Please select the DOB of the user");
         return;
       }
+      //Verify there is a healthcard number
       if(this.userToSave.healthcard===''){
         window.alert("Please type the Health Card Number of the user");
         return;
       }
 
-      //register as patient, anyone can register aas patient
+      //register as patient, anyone can register as a patient
       this.userToSave.id_role=this.roles.find(role=>role.name===this.userToSave.role);
       let userToSend = {
         fullname: this.userToSave.fullname,
         email: this.userToSave.email,
         id_role: this.userToSave.id_role._id,
+        specialty:this.userToSave.specialty,
         birthdate: this.userToSave.birthdate,    
         gender: this.userToSave.gender,
         healthcard: this.userToSave.healthcard,
