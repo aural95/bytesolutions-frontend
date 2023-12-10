@@ -94,7 +94,14 @@ export class HomeComponent {
     const itemDate = new Date(date);
     const hoursToAdd = 5; // add five hours of server difference
     itemDate.setHours(itemDate.getHours() + hoursToAdd);
-    return itemDate < today;
+  
+    // Compare only year, month, and day
+    return (
+      itemDate.getFullYear() < today.getFullYear() ||
+      (itemDate.getFullYear() === today.getFullYear() &&
+        (itemDate.getMonth() < today.getMonth() ||
+          (itemDate.getMonth() === today.getMonth() && itemDate.getDate() < today.getDate())))
+    );
   }
   
   isFutureDate(date: string): boolean {

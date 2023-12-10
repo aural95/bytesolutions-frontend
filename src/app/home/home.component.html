@@ -75,15 +75,22 @@
                     <span class="text-secondary text-xs font-weight-bold">{{ item.end_time }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <button class="btn btn-danger btn-sm" (click)="cancelAppointment(item._id)">Cancel</button>
+                    <button *ngIf="isFutureDate(item.date)" class="btn btn-danger btn-sm" (click)="cancelAppointment(item._id)">Cancel</button>
                   </td>
 
                   <td class="align-middle">
                     <div >
                       <a href="/chat-room/{{ item._id }}" class="text-secondary font-weight-bold text-xs"
+                      data-toggle="tooltip" data-original-title="Edit user"
+                      *ngIf="isToday(item.date); else pastOrFutureDate">
+                      Join
+                    </a>
+                    <ng-template #pastOrFutureDate>
+                      <a href="/chat-room/{{ item._id }}" class="text-secondary font-weight-bold text-xs"
                         data-toggle="tooltip" data-original-title="Edit user">
-                        {{ isToday(item.date) ? "Join" : "Follow-up" }}
+                        {{ isPastDate(item.date) ? "Follow-up" : "" }}
                       </a>
+                    </ng-template>
                     </div>
                   </td>
                 </tr>
