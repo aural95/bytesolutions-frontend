@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AppointmentService } from 'src/app/services/appointment.service'
 
@@ -12,7 +12,7 @@ import { AppointmentService } from 'src/app/services/appointment.service'
 
 
 export class HomeComponent {
-  constructor(private appointmentService: AppointmentService, private http: HttpClient) { }
+  constructor(private appointmentService: AppointmentService, private http: HttpClient, private router: Router) { }
   appointments: any;
   role: string | null = null;
   user: string | null = null;
@@ -94,7 +94,7 @@ export class HomeComponent {
     const itemDate = new Date(date);
     const hoursToAdd = 5; // add five hours of server difference
     itemDate.setHours(itemDate.getHours() + hoursToAdd);
-  
+
     // Compare only year, month, and day
     return (
       itemDate.getFullYear() < today.getFullYear() ||
@@ -103,7 +103,7 @@ export class HomeComponent {
           (itemDate.getMonth() === today.getMonth() && itemDate.getDate() < today.getDate())))
     );
   }
-  
+
   isFutureDate(date: string): boolean {
     const today = new Date();
     const itemDate = new Date(date);
@@ -126,11 +126,11 @@ export class HomeComponent {
 
 
   cancelAppointment(id: string): void {
-//656a4745050daa1060163179
+    //656a4745050daa1060163179
     this.appointmentService
       .cancelAppointment(id).subscribe(
         (resultData: any) => {
-          
+
           if (resultData.success) {
             this.loadAppointments();
             console.log('Appointment scheduled successfully:', resultData.data);
@@ -144,5 +144,8 @@ export class HomeComponent {
       );
   }
 
+  modifyAppointment(id: string): void {
+    this.router.navigate(['schedule', id]);
+  }
 
 }

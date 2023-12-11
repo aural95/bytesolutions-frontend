@@ -24,7 +24,7 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cancel</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                   <th class="text-secondary opacity-7"></th>
                 </tr>
               </thead>
@@ -75,7 +75,12 @@
                     <span class="text-secondary text-xs font-weight-bold">{{ item.end_time }}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <button *ngIf="isFutureDate(item.date)" class="btn btn-danger btn-sm" (click)="cancelAppointment(item._id)">Cancel</button>
+                    <button *ngIf="isFutureDate(item.date)" class="btn btn-warning btn-sm" (click)="modifyAppointment(item._id)"> 
+                     Modify
+                    </button>
+                    <button *ngIf="isFutureDate(item.date)" class="btn btn-danger btn-sm" (click)="cancelAppointment(item._id)">
+                      Cancel
+                    </button>        
                   </td>
 
                   <td class="align-middle">

@@ -18,6 +18,7 @@ const routes: Routes = [
   {path: 'users', component:UsersComponent},
   {path: 'users/adminregister', component:UserRegistrationComponent },
   {path: 'schedule', component:ScheduleAppointmentComponent },
+  {path: 'schedule/:id', component: ScheduleAppointmentComponent },
   {path: 'load', component:LoadPhysicianAvailabilityComponent },
   {path: 'patient-register',component:PatientRegisterComponent},
   {path: 'chat-room',component:ChatRoomComponent},
