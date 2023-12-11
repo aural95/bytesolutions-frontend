@@ -1,6 +1,6 @@
 import { Component, ViewChild, ɵclearResolutionOfComponentResourcesQueue } from '@angular/core';
 
-import { Calendar, CalendarOptions, EventInput } from '@fullcalendar/core'; // useful for typechecking
+import { Calendar, CalendarOptions, EventInput } from '@fullcalendar/core';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -54,19 +54,12 @@ export class LoadPhysicianAvailabilityComponent {
     
   };
   
-
-
-
+  //Update function to refresh the calendar
   update(){
-    console.log("entrando a update");
-    console.log(this.calendarOptions.events);
-    
-    let schedulesToShow: { title: string, start: string, end: string, constraint: string }[] = []; // elimine el date: string
+    let schedulesToShow: { title: string, start: string, end: string, constraint: string }[] = []; 
       try {
         this.http.get("http://localhost:4000/appointments").subscribe((resultData:any)=>{
           
-          console.log("ESTO ES RESULDATA:");
-          console.log(resultData);
           let schedules=resultData; 
           
           for(let i=0; i < schedules.length; i++){
@@ -82,24 +75,13 @@ export class LoadPhysicianAvailabilityComponent {
               color: schedules[i].is_booked ? 'red' : 'green',  
               constraint: 'businessHours' 
             };
-  
-            // console.log("---------");
-            // console.log(showAppointments);
             schedulesToShow.push(showAppointments);
           }
-          // console.log("Data transformed:");
-          // console.log(schedulesToShow);
           this.calendarOptions.events=schedulesToShow;
-          // console.log("ESTO ME DARA EL RESULTADO: ");
-          // console.log(this.calendarOptions.events);
-
-          
-          
         });
 
     } catch (error) {
-      console.error(error);
-      console.log(error);
+      window.alert(error);
     }
   }
 

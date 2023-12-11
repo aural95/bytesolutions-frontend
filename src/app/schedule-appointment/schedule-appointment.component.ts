@@ -12,6 +12,7 @@ import { AppointmentService } from 'src/app/services/appointment.service'
 })
 
 export class ScheduleAppointmentComponent implements OnInit {
+  
   selectedSpecialty: string = 'All Specialties';
   physicians: any[] = [];
   appointments: any[] = [];
@@ -31,10 +32,11 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.physicians = [];
   }
 
-  ngOnInit() {
-    this.role = sessionStorage.getItem("role");
-    this.patientName = sessionStorage.getItem("user");
-    this.idUser = sessionStorage.getItem("idUser");
+  /* Get initial vaues of the variables declared*/
+    ngOnInit() {
+    this.role = sessionStorage.getItem("role");   
+    this.patientName = sessionStorage.getItem("user");   
+    this.idUser = sessionStorage.getItem("idUser");  
     this.selectedSpecialty = 'All Specialties';
     this.fetchPhysiciansBySpecialty();
     this.startTimeSelected = ' ';
@@ -50,7 +52,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     });
   }
 
-  // Specialty filter: 
+  // Get physicians with an specific specialty: 
 
   onSpecialtyChange(specialty: string): void {
     this.selectedSpecialty = specialty;
@@ -61,6 +63,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     }
   }
 
+  /* Call to backend to search physicians in the users table that has the same specialty*/
   async fetchPhysiciansBySpecialty() {
     console.log('Fetching physicians for specialty:', this.selectedSpecialty);
     try {
@@ -83,7 +86,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     }
   }
 
-
+  //Get all the appointments available
   fetchAppointmentsByDate(): void {
     this.appointmentService
       .fetchAppointmentsByDate(this.physicianSelected, this.dateSelected).subscribe(
@@ -103,8 +106,8 @@ export class ScheduleAppointmentComponent implements OnInit {
   }
 
 
-  //Schedule appointment section: 
-  scheduleAppointment(): void {
+ //Schedule appointment form validation and put request to backend to schedule the appointment
+ scheduleAppointment(): void {
     if (!this.dateSelected || !this.startTimeSelected || !this.physicianSelected) {
       console.error('Please fill out all the fields!');
       return;

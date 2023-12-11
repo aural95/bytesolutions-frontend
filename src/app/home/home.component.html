@@ -3,7 +3,7 @@
 <!-- Navbar -->
 <app-navbar customTitle="Home"></app-navbar>
 
-
+<!--Appointments table-->
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-12">
@@ -37,7 +37,6 @@
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm">{{ item.physician_email.fullname }}</h6>
-                        <!-- <p class="text-xs text-secondary mb-0">{{ item.physician_email }}</p> -->
                       </div>
                     </div>
                   </td>
@@ -45,7 +44,6 @@
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm">{{ item.patient_email.fullname }}</h6>
-                        <!-- <p class="text-xs text-secondary mb-0">{{ item.patient_email }}</p> -->
                       </div>
                     </div>
                   </td>
@@ -54,9 +52,6 @@
                     <p class="text-xs font-weight-bold mb-0">Physician</p>
                     <p class="text-xs text-secondary mb-0">{{ item.physician_email.specialty }}</p>
                   </td>
-                  <!-- <td class="align-middle text-center text-sm">
-                      <span class="badge badge-sm bg-gradient-warning">Pending</span>
-                    </td> -->
 
                   <td class="align-middle text-center text-sm">
                     <span *ngIf="isToday(item.date)" class="badge badge-sm bg-gradient-primary">Active</span>
