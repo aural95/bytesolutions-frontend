@@ -16,7 +16,7 @@ export class SidebarComponent {
   }
 
   constructor(private authService: AuthService, private router: Router) {}
-
+  //Call authservice.logout to logout the user
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/']);

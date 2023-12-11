@@ -12,11 +12,11 @@ export class LoginComponent {
   credentials = { email: '', password: '' };
 
   constructor(private router: Router, private authService: AuthService) {}
-
+  //Login function to authenticate a user into the system and verify their role
   login() {
     this.authService.login(this.credentials).subscribe(
       (response) => {
-        console.log(response);
+
         const token = response.data.token;
         const user = response.data.user.fullname; 
         const idUser = response.data.user._id;

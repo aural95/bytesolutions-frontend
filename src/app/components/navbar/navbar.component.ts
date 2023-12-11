@@ -13,6 +13,6 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem("role");
-    this.user = sessionStorage.getItem("idUser");
+    this.user = sessionStorage.getItem("user");
   }
 }

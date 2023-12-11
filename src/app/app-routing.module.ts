@@ -10,7 +10,7 @@ import { PatientRegisterComponent } from './patient-register/patient-register.co
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 import { LoadPhysicianAvailabilityComponent } from './load-physician-availability/load-physician-availability.component';
-
+//routes defined for the project
 const routes: Routes = [
   {path: '', component:LoginComponent },
   {path: 'home', component:HomeComponent },

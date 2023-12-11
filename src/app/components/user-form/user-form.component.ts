@@ -54,7 +54,6 @@ export class UserFormComponent {
 
   onChangeDate():void{
     this.isDateModified=true;
-    console.log(this.userToSave.birthdateString);
   }
 
   //Function to send to the specific path after finishing
@@ -93,10 +92,10 @@ export class UserFormComponent {
     };
     this.userToSave.birthdateString = this.userToSave.birthdate.toISOString().split('T')[0];
   }
-
+  //Code executed when the admin or a user register as patient users
+  
   onSubmit():void{
     this.userToSave.birthdate=new Date(this.userToSave.birthdateString); 
-    console.log(this.userToSave);
     
 
     if(this.typeOfForm==="Edit"){
@@ -114,7 +113,7 @@ export class UserFormComponent {
             window.alert("User edited");
             this.returnToPreviousRoute();
           } else {
-            console.log('Error editing user');
+            window.alert('Error editing user');
           }
         });
     }else{
@@ -161,10 +160,10 @@ export class UserFormComponent {
         healthcard: this.userToSave.healthcard,
         password: this.userToSave.password
       };
+      //post request to backend
       this.http
         .post('http://localhost:4000/auth/register',userToSend)
         .subscribe((resultData: any) => {
-          console.log(resultData);
           if (resultData.data.status) {
             window.alert("User created");
             this.returnToPreviousRoute();
@@ -173,12 +172,8 @@ export class UserFormComponent {
           }
         });
     }
-    
-
-
-    
   }
-
+  //Get all the roles from the backend
   getRoleList():void {
     let bodyData = {};
     this.http

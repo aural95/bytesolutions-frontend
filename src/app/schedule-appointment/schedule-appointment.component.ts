@@ -11,6 +11,7 @@ import { AppointmentService } from 'src/app/services/appointment.service'
 })
 
 export class ScheduleAppointmentComponent implements OnInit {
+  
   selectedSpecialty: string = 'All Specialties';
   physicians: any[] = [];
   appointments: any[] = [];
@@ -28,8 +29,8 @@ export class ScheduleAppointmentComponent implements OnInit {
   constructor(private httpClient: HttpClient, private appointmentService: AppointmentService, private router: Router) {
     this.physicians = [];
   }
-
-  ngOnInit() {
+  /* Get initial vaues of the variables declared*/
+    ngOnInit() {
     this.role = sessionStorage.getItem("role");   
     this.patientName = sessionStorage.getItem("user");   
     this.idUser = sessionStorage.getItem("idUser");  
@@ -44,7 +45,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     });
   }
 
-  // Specialty filter: 
+  // Get physicians with an specific specialty: 
 
   onSpecialtyChange(specialty: string): void {
     this.selectedSpecialty = specialty;
@@ -55,6 +56,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     }
   }
 
+  /* Call to backend to search physicians in the users table that has the same specialty*/
   async fetchPhysiciansBySpecialty() {
     console.log('Fetching physicians for specialty:', this.selectedSpecialty);
     try {
@@ -77,7 +79,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     }
   }
 
-
+  //Get all the appointments available
   fetchAppointmentsByDate(): void {
         this.appointmentService
           .fetchAppointmentsByDate(this.physicianSelected, this.dateSelected).subscribe(
@@ -97,7 +99,7 @@ export class ScheduleAppointmentComponent implements OnInit {
       }
 
 
- //Schedule appointment section: 
+ //Schedule appointment form validation and put request to backend to schedule the appointment
  scheduleAppointment(): void {
     if (!this.dateSelected || !this.startTimeSelected || !this.physicianSelected) {
       console.error('Please fill out all the fields!');
@@ -120,7 +122,7 @@ export class ScheduleAppointmentComponent implements OnInit {
       );
    }
 
-   // Cancel appointments 
+   //Get all the appointments
    async fetchAllPatientAppointments() {
     console.log('Fetching all appointments for this patient', this.appointmentSelected);
     try {

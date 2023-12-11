@@ -22,7 +22,7 @@ export class HomeComponent {
     this.user = sessionStorage.getItem("idUser");
     this.loadAppointments();
   }
-
+  //Function to call the appropiate get method according to the role of the user
   loadAppointments(): void {
     switch (this.role?.toLowerCase()) {
       case "patient":
@@ -36,7 +36,7 @@ export class HomeComponent {
         break;
     }
   }
-
+  //Get all the appointments regardless the status, this view is for staff members or admin user
   getAppointments(): void {
     this.appointmentService
       .getAppointments().subscribe(
@@ -53,7 +53,7 @@ export class HomeComponent {
         }
       );
   }
-
+  //Retrieve from the backend the appointments  for the patient: only shows the appointments that this patient booked
   getAppointmentsByPatient(patientId: string): void {
     this.appointmentService
       .getAppointmentsByPatient(patientId).subscribe(
@@ -70,7 +70,7 @@ export class HomeComponent {
         }
       );
   }
-
+  //Retrieve from the backend the appointments  for the physician
   getAppointmentsByDoctor(patientId: string): void {
     this.appointmentService
       .getAppointmentsByDoctor(patientId).subscribe(
@@ -88,7 +88,7 @@ export class HomeComponent {
       );
   }
 
-
+  //Compare if the appointment is before the current date
   isPastDate(date: string): boolean {
     const today = new Date();
     const itemDate = new Date(date);
@@ -103,7 +103,7 @@ export class HomeComponent {
           (itemDate.getMonth() === today.getMonth() && itemDate.getDate() < today.getDate())))
     );
   }
-  
+  //Compare if the appointment is after the current date
   isFutureDate(date: string): boolean {
     const today = new Date();
     const itemDate = new Date(date);
@@ -111,7 +111,7 @@ export class HomeComponent {
     itemDate.setHours(itemDate.getHours() + hoursToAdd);
     return itemDate > today;
   }
-
+  //Compare if the appointment is in the current date
   isToday(date: string): boolean {
     const today = new Date();
     const itemDate = new Date(date);
@@ -124,22 +124,21 @@ export class HomeComponent {
     );
   }
 
-
+  //Cancel an appointment
   cancelAppointment(id: string): void {
-//656a4745050daa1060163179
     this.appointmentService
       .cancelAppointment(id).subscribe(
         (resultData: any) => {
           
           if (resultData.success) {
             this.loadAppointments();
-            console.log('Appointment scheduled successfully:', resultData.data);
+            window.alert('Appointment scheduled successfully');
           } else {
-            console.error('Error: ' + resultData);
+            window.alert('Error: ' + resultData);
           }
         },
         (error) => {
-          console.error('Error scheduling appointment:', error);
+          window.alert('Error scheduling appointment:' + error);
         }
       );
   }
